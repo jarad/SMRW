@@ -1,0 +1,135 @@
+\chapter{Probability}
+
+In this chapter, 
+we will be introducing the mathematical concept of probability. 
+But before we do so, 
+it makes sense to consider how we use the term probability in our life and 
+what we really mean when we say \emph{probability}.
+
+\section{Interpretation of Probability}
+
+I googled for news articles using the word probability and here are some
+titles of articles:
+
+\begin{quote}
+A recent paper in Reviews of Geophysics describes a probabilistic method for evaluating tsunami location, size, and risk to human populations.
+\end{quote}
+
+from \url{https://eos.org/editors-vox/probability-analysis-improves-hazard-assessment}
+
+Without reading the paper, 
+I believe that the paper is trying to predict where and when a tsunami will
+hit as well as the expected strength. 
+
+\begin{quote}
+Chiefs’ win probability was nearly 98 percent at one point against Titans.
+\end{quote}
+
+from \url{http://www.kansascity.com/sports/spt-columns-blogs/for-petes-sake/article193395329.html}
+
+As you might expect the Chiefs' end up losing the game. 
+
+\begin{quote}
+Recession Probability Ticks Slightly Up As Fed Hikes
+\end{quote}
+
+from \url{https://seekingalpha.com/article/4132021-recession-probability-ticks-slightly-fed-hikes}
+
+Apparently the probability of a recession occurring within the next 12 months 
+has ticked up from 0.37\% to 0.40\%. 
+
+\begin{quote}
+Column: The probability of being right or wrong
+\end{quote}
+
+from \url{http://www.tampabay.com/opinion/columns/Column-The-probability-of-being-right-or-wrong_163910545}.
+
+This article was accompanied with two 6-sided die that we both on 2. 
+I'm not sure if that was significant. 
+
+\subsection{Frequency}
+
+In most introductory probability and statistics textbooks, 
+the common interpretation of probability is that it is a relative frequency
+of observing that event amongst all the times that the event could have 
+occurred.
+More formally, it is the limit of all these times and we can express this 
+mathematically in \eqref{e:frequency}.
+\begin{equation}
+P(A) = \lim_{n\to\infty} \frac{\sum_{i=1}^n X_i}{n}.
+\end{equation}
+
+Equation \eqref{e:frequency} looks complicated, 
+but it isn't really too bad. 
+Let's break down the parts.
+On the left-hand side, 
+we have 
+\begin{itemize}
+\item $P(A)$ which is our notation for the probability of the event $A$. 
+\end{itemize}
+In our examples,
+these probabilities may be for the following events:
+\begin{enumerate}
+\item a tsunami of intensity at least 1\footnote{Suppose I am using the Imamuri-lida tsunami intensity scale.} hitting Biesanz Beach in Costa
+Rica within the next year,
+\item Chiefs winning the game against the Titans,
+\item A U.S. recession occurring in the next 12 months, or
+\item being wrong about something, say thinking the Chiefs were going to win.
+\end{enumerate}
+
+The left-hand side is our notation and we are defining probability by the terms
+on the right. 
+
+\begin{itemize}
+\item $X_i$ is an indicator of event A occurring in the $i$th trial, 
+i.e. $X_i$ is 1 if the trial occurred in the $i$th attempt and 0 otherwise.
+\item $\sum_{i=1}^n X_i$ is the sum of these indicators and is therefore the
+number of times the event has occurred in the first $n$ attempts.
+\item $\frac{\sum_{i=1}^n X_i}{n}$ is the number of times the event has occurred
+divided by the number of attempts and is thus the proportion of times the 
+event has occurred in the $n$ attempts.
+\item $\lim_{n\to\infty}$ just means to keep making attempts so that $n$ gets 
+larger and larger. 
+\end{itemize}
+
+So as we keep making attempts, 
+presumably the proportion settles down to one particular number and we call that
+number the \emph{probability}.
+
+This interpretation makes complete sense in theory.
+So, suppose we roll a 6-sided die many times and record how often it 
+lands face-side up on a 3. 
+Instead of actually performing this experiment in my office, 
+I am going to use a random number generator in R to do it. 
+So, here is the experiment:
+
+<<roll_die>>=
+set.seed(20180608)
+n <- 10000
+x <- sample(6,                 # a 6-sided die
+            size = n,    # number of attempts
+            replace = TRUE,    # we are allowed to roll the same number again
+            prob = rep(1/6,6)) # probability is 1/6 for every side
+@
+
+Wasn't that exciting!
+Well, maybe a picture will help.
+
+<<plot_die_rolls, dependson = "roll_die">>=
+p <- cumsum(x == 3)/(1:n)
+plot(p, 
+     xlab = 'Number of attempts', 
+     ylab = 'Proportion', 
+     main = '', type = 'l')
+abline(h=1/6, col='red')
+@
+
+Indeed, 
+this relative frequency interpretation makes a lot of sense when we consider 
+games of change, 
+but it appears to have less applicability to many real-world situations like
+the ones discussed above.
+Can we ever repeatedly attempt to get a tsunami at a particular place at a 
+particular time? 
+Can we ever repeatedly play that game pitting the Chiefs against the Titans?
+

@@ -1,0 +1,17 @@
+\documentclass{book}
+
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Statistical Modeling for Research Workers}
+\author{Jarad Niemi}
+\date{\today}
+
+\maketitle
+\newpage
+
+<<child-demo, child='P1C1_probability.Rnw'>>=
+@
+
+\end{document}
