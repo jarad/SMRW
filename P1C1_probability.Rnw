@@ -56,7 +56,8 @@ occurred.
 More formally, it is the limit of all these times and we can express this 
 mathematically in \eqref{e:frequency}.
 \begin{equation}
-P(A) = \lim_{n\to\infty} \frac{\sum_{i=1}^n X_i}{n}.
+\label{e:frequency}
+P(E) = \lim_{n\to\infty} \frac{\sum_{i=1}^n X_i}{n}.
 \end{equation}
 
 Equation \eqref{e:frequency} looks complicated, 
@@ -65,7 +66,7 @@ Let's break down the parts.
 On the left-hand side, 
 we have 
 \begin{itemize}
-\item $P(A)$ which is our notation for the probability of the event $A$. 
+\item $P(E)$ which is our notation for the probability of the event $E$. 
 \end{itemize}
 In our examples,
 these probabilities may be for the following events:
@@ -81,7 +82,7 @@ The left-hand side is our notation and we are defining probability by the terms
 on the right. 
 
 \begin{itemize}
-\item $X_i$ is an indicator of event A occurring in the $i$th trial, 
+\item $X_i$ is an indicator of event $E$ occurring in the $i$th trial, 
 i.e. $X_i$ is 1 if the trial occurred in the $i$th attempt and 0 otherwise.
 \item $\sum_{i=1}^n X_i$ is the sum of these indicators and is therefore the
 number of times the event has occurred in the first $n$ attempts.
@@ -126,10 +127,149 @@ abline(h=1/6, col='red')
 
 Indeed, 
 this relative frequency interpretation makes a lot of sense when we consider 
-games of change, 
+games of chance, 
 but it appears to have less applicability to many real-world situations like
 the ones discussed above.
 Can we ever repeatedly attempt to get a tsunami at a particular place at a 
 particular time? 
 Can we ever repeatedly play that game pitting the Chiefs against the Titans?
+Can we ever repeatedly have January to December of 2018?
+
+
+
+\subsection{Personal belief}
+
+An alternative to a relative frequency interpretation is an interpretation 
+based on personal belief. 
+That is, probability is a statement about your belief that an event will occur.
+So, we can have our personal belief about 
+\begin{enumerate}
+\item a tsunami of intensity at least 1 hitting Biesanz Beach in Costa
+Rica within the next year,
+\item Chiefs winning the game against the Titans,
+\item A U.S. recession occurring in the next 12 months, or
+\item being wrong about something, say thinking the Chiefs were going to win.
+\end{enumerate}
+
+There is no reason we need to agree on this belief as we have different 
+background knowledge.
+That is, 
+if you have background knowledge $K_1$ and I have background $K_2$, 
+then we can have 
+\[ P(E|K_1) \ne P(E|K_2) \]
+where the notation is a conditional probability, 
+e.g. $P(E|K_2)$ is my personal belief about event $E$ given that my background
+knowledge is $K_2$.
+But if we collect enough data $y$, 
+then we might be close, i.e. 
+\[ P(E|K_1,y) \approx P(E|K_2,y). \]
+If these probabilities are close enough, 
+then we will make the same decisions regarding the event $E$. 
+
+This approach also works for games of chance.
+Typically in games of chance, 
+we can deductively arrive at a probability that we
+will all agree on, 
+e.g. most people agree that the probability of rolling a 3 on a 6-sided die 
+is 1/6 (or at least extremely close to this value).
+
+
+\section{Probability theory}
+
+While keeping our thoughts on the interpretation of probability, 
+we will now turn to probability theory as defined using mathematics.
+The language of probability is initial based on set theory, 
+then postulates a set of axioms, and adds a couple of definitions.
+
+
+\subsection{Set theory}
+
+Throughout the following, 
+we will denote a set using a capitalize Roman letter and the elements of a 
+set within curly braces, i.e. $\{ \}$. 
+
+\begin{definition}
+A \emph{set} is a collection of things and those things are called 
+\emph{elements} of the set.
+\end{definition}
+
+For example, 
+\begin{itemize}
+\item the possible rolls of a standard 6-sided die, i.e. $A = \{1,2,3,4,5,6\}$,
+\item even, positive integers, i.e. $B = \{2,4,6,\ldots\}$, and
+\item all numbers in the interval 0 to 3, i.e. $C = (0,3)$ 
+(this is the open interval that does not include 0 or 3).
+\end{itemize}
+These examples all use numbers, but a set can also be actual objects, e.g. 
+$D = \{\mbox{apple}, \mbox{orange}, \mbox{banana}\}$.
+
+
+\begin{definition}
+A \emph{subset} of a set, denoted $\subset$, occurs when another set has some 
+(possibly all) but no extra elements of a set.
+\end{definition}
+
+For example, 
+\[
+\{1,2,3\} \subset A
+\]
+and 
+\[
+\{2,4,6\} \subset A.
+\]
+
+
+
+There some standard mathematical operations that can be performed on sets. 
+
+\begin{definition}
+The \emph{union}, denoted $\union$, of two sets includes any element in either 
+set.
+\end{definition}
+
+For example,
+\[ 
+A \union B = \{1,2,3,4,5,6,8,10,12,\ldots\}.
+\]
+
+Notice that the elements are not repeated, 
+there is only a single 2, 4, and 6 in this union.
+
+\begin{definition}
+The \emph{intersection}, denoted $\intersection$, 
+of two sets includes any element in both sets.
+\end{definition}
+
+For example,
+\[ 
+A \intersection B = \{2,4,6\}.
+\]
+
+
+\begin{definition}
+The \emph{set difference}, denoted $\setminus$, 
+of two sets is the elements in the first that do not occur in the second.
+\end{definition}
+
+For example,
+\[
+A \setminus B = \{1,3,5\}
+\]
+and 
+\[
+B \setminus A = \{8,10,12,\ldots\}.
+\]
+
+
+
+
+
+
+When used for the purpose of probability, 
+we often consider constructing a special set of all possible outcomes of an 
+experiment.
+We call this set the \emph{sample space} and typically denote it $\Omega$.
+Thus the sample space for a single roll of a 6-sided die is $\{1,2,3,4,5,6\}$.
+
+Subsets of this sample space are called events
 
