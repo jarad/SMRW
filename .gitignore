@@ -34,7 +34,8 @@ vignettes/*.pdf
 .Rproj.user
 
 # LaTeX auxiliary files
-*.tex
+*.aux
 *.pdf
 *.log
 *.synctex.gz
+*-concordance.tex

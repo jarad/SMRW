@@ -1,0 +1,75 @@
+% !TeX root = SMRW.tex
+
+\chapter{Statistical modeling}
+
+The previous part introduce the concept of probability and a number of 
+probability distributions.
+Statistical modeling involves assuming a probability model for your data,
+i.e. assuming a probability distribution for your data
+where the parameters of the distribution are unknown.
+Statistical inference involves making statements about those parameters.
+
+Throughout this part (similar to the previous part),
+we will utilize the notation where an upper case Roman letter, e.g. $Y$,
+indicates your data before you observe it
+while a lower case Roman letter, e.g. $y$,
+indicates the observed value for your data. 
+We now introduce Greek letters for the unknown parameters of the probability 
+model for your data.
+
+As an example, 
+we may assume our data come from a binomial distribution.
+Specifically, 
+we assume that each individual trial has a common success probability and 
+that each attempt is independent (given the true success probability) on 
+all of the other attempts. 
+Then 
+\[ Y\sim Bin(n,\theta) \]
+where 
+\begin{itemize}
+\item $Y$ is the total number of success,
+\item n is the (known) number of attempts, and
+\item $\theta$ is the unknown probability of success.
+\end{itemize},
+ 
+Another example is to assume that our data come from a normal distribution.
+Specifically,
+we assume that each observation has a common mean and variance and that each 
+observation is independent of all other observations (given the true mean and
+variance).
+Then 
+\[ Y_i\ind N(\mu,\sigma^2) \]
+where 
+\begin{itemize}
+\item $Y_i$ is the measured observation for unit $i$ for $i=1,\ldots,n$,
+\item $\mu$ is the unknown population mean, and
+\item $\sigma^2$ ($\sigma$) is the unknown population variance (standard 
+deviation).
+\end{itemize}
+
+
+\section{Population parameters}
+
+The unknown parameters of these distributions are known as the {\bf population 
+parameters}.
+In $Y\sim Bin(n,\theta)$, $\theta$ is the  
+population \emph{probability of success}.
+In $Y_i\ind N(\mu,\sigma^2)$, $\mu$ and $\sigma^2$ ($\sigma$) are the 
+population \emph{mean} and \emph{variance (standard deviation)}, respectively.
+One way to think about these population parameters is that they are the actual
+value in the entire population.
+In the binomial example,
+$\theta$ is the actual proportion of successes in the entire population.
+In the normal example, 
+$\mu$ and $\sigma^2$ are the actual mean and variance of the entire population.
+Of course, we never observe the entire population.
+
+\section{Sample statistics}
+
+In order to make statements about these population parameters, 
+we will collect a sample, 
+i.e. a group of observations from the population.
+In this sample, 
+we can calculate statistics. 
+So we might calculate the sample proportion of successes which is $y$ 
+(the number of observed successes) divided by $n$.

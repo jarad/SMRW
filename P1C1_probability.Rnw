@@ -205,8 +205,10 @@ $D = \{\mbox{apple}, \mbox{orange}, \mbox{banana}\}$.
 
 
 \begin{definition}
-A \emph{subset} of a set, denoted $\subset$, occurs when another set has some 
+A \emph{subset} of a set, denoted $\subseteq$, occurs when another set has some 
 (possibly all) but no extra elements of a set.
+A \emph{proper subset}, denoted $\subset$ is a subset that does not have 
+all the elements of another set.
 \end{definition}
 
 For example, 

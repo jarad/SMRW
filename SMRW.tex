@@ -1,0 +1,37 @@
+\documentclass{book}
+
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+ 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+
+\title{Statistical Modeling for Research Workers}
+\author{Jarad Niemi}
+\date{\today}
+
+\input{commands}
+
+\includeonly{P2C1_introduction}
+
+\begin{document}
+
+
+
+\maketitle
+\newpage
+
+\part{Probability}
+% \include{P1C1_probability}
+
+\newpage
+\part{Statistical inference}
+\include{P2C1_introduction}
+\include{P2C2_bayesian}
+
+\end{document}
