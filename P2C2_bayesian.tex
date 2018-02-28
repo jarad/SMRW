@@ -1,2 +1,213 @@
+% !TeX root = SMRW.tex
+
 \chapter{Bayesian inference}
+
+Bayesian inference is performed by finding the probability distribution for 
+unknown quantities conditional on what is known. 
+
+\section{Parameter estimation}
+
+Let $\theta$ be a generic parameter (vector) and $y$ the data observed from 
+a model $p_{y|\theta}(y|\theta)$. 
+Bayesian parameter estimation involves assigning a prior distribution 
+$p_\theta(\theta)$ for the unknown parameters and deriving the posterior 
+distribution in Equation \eqref{e:parameter_estimation}.
+
+\begin{equation}
+p_{\theta|y}(\theta|y) 
+= \frac{p_{y|\theta}(y|\theta)p_\theta(\theta)}{p_y(y)} 
+\propto p_{y|\theta}(y|\theta)p_\theta(\theta) 
+\label{e:parameter_estimation}
+\end{equation}
+
+
+\subsection{Prior}
+
+\subsubsection{Conjugate prior}
+
+A conjugate prior for a model occurs when the posterior has the same family as 
+the prior.
+The natural conjugate prior for a model occurs when the kernel of the posterior
+is the same as the kernel of the model.
+
+\subsubsection{Jeffreys prior}
+
+Jeffreys prior is a prior that is invariant to the parameterization used in the 
+problem. 
+The prior is given by 
+\[
+p_\theta(\theta) \propto \sqrt{\text{det }I(\theta)}
+\]
+where det denotes the determininant and $I(\theta)$ is Fisher information matrix.
+
+\subsubsection{Reference prior}
+
+\subsubsection{Default prior}
+
+I will use the term \emph{default} when a prior is reasonably agreed upon by the
+statistics community as a good choice when the scientist cannot or is unwilling
+to specify an informative prior.
+
+
+\subsubsection{Non-conjugate priors}
+
+We only considered conjugate priors or default priors that result in a 
+posterior distribution that has a known form.
+
+
+\subsection{Posteriors}
+
+The posterior distribution provides a complete summary of our knowledge about
+the unknown parameters.
+
+\subsubsection{Posterior probabilities}
+
+For a scalar $\theta$, 
+a \emph{posterior probability} is probability statement of the form
+$P(\theta\le c|y)$, 
+$P(\theta< c|y)$, 
+$P(\theta\ge c|y)$, or
+$P(\theta> c|y)$.
+The ``$|y$'' indicates that this is a posterior probability.
+Posterior probabilities can often be calculated exactly using the cumulative
+distribution function associated with the posterior distribution. 
+
+
+\subsubsection{Credible intervals}
+
+For a scalar $\theta$,
+a \emph{100(1-a)\% credible interval} is any interval of the form $(L,U)$ such 
+that 
+\[ 
+1-a = \int_L^U p_{\theta|y}(\theta|y) d\theta.
+\]
+A \emph{(two-sided) equal-tailed $100(1-a)$\% credible interval} has 
+\[ 
+a/2 
+= \int_{-\infty}^L p_{\theta|y}(\theta|y) d\theta 
+= \int_U^\infty    p_{\theta|y}(\theta|y) d\theta.
+\]
+A \emph{one-sided lower $100(1-a)$\% credible interval} has $L=-\infty$ 
+(or whatever the lower bound for the support of $\theta$ is) and
+\[ 
+a = \int_{-\infty}^U p_{\theta|y}(\theta|y) d\theta 
+\]
+while an \emph{one-sided upper $100(1-a)$\% credible interval} has $U=\infty$ 
+(or whatever the upper bound for the support of $\theta$ is) and
+\[ 
+a = \int_L^\infty p_{\theta|y}(\theta|y) d\theta.
+\]
+These intervals can typically be found using the inverse of the cumulative 
+distribution function.
+
+
+A \emph{highest posterior density} (HPD) $100(1-a)$\% credible interval has 
+$p_{\theta|y}(L|y)=p_{\theta|y}(H|y)$ (for unimodel posteriors).
+An HPD $100(1-a)$\% credible interval is also the shortest $100(1-a)$\% interval.
+
+
+\section{Binomial model}
+
+Assume the binomial model $Y\sim Bin(n,\theta)$ and the natural conjugate 
+prior $\theta \sim Be(a,b)$. 
+The posterior is in Equation \eqref{e:binomial_posterior}.
+\begin{equation}
+\theta|y \sim Be(a+y,b+n-y)
+\label{e:binomial_posterior}
+\end{equation}
+
+\subsection{Default analysis}
+
+Common default priors are the uniform prior $a=b=1$ which is equivalent to 
+$Unif(0,1)$ and Jeffreys prior $a=b=1/2$.
+The posterior is provided in Equation \eqref{e:binomial_posterior}.
+
+\subsubsection{Credible intervals}
+\label{s:binomial_credible_intervals}
+
+To be completed ...
+
+\subsection{Posterior probabilities}
+
+Statements such as $P(\theta<c|y)$ for some value 
+
+\section{Normal model}
+
+We will consider three cases: 
+\begin{enumerate}
+\item mean is unknown but the variance is known, 
+\item variance is unknown but the mean is known, and 
+\item both the mean and variance are unknown.
+\end{enumerate}
+
+\subsubsection{Normal model with known variance}
+
+Assume $Y_i\ind N(\mu,v^2)$ and the natural conjugate prior $\mu\sim N(m,C)$. 
+The posterior is $\mu|y \sim N(m',C')$ with values provided
+in Equation \eqref{e:normal_known_variance_posterior}.
+\begin{equation}
+C' = \left[\frac{1}{C} + \frac{1}{v^2/n}\right]^{-1} \quad 
+m' =  C'\left[\frac{m}{C} + \frac{\overline{y}}{v^2/n}\right]
+\label{e:normal_known_variance_posterior}
+\end{equation}
+
+\subsubsection{Normal model with known mean}
+
+Assume $Y_i\ind N(m,\sigma^2)$ and the natural conjugate prior 
+$\sigma^2\sim IG(a,b)$. 
+The posterior is in Equation \eqref{e:normal_known_mean_posterior}.
+\begin{equation}
+\sigma^2|y \sim IG\left( a + \frac{n-1}{2}, b + \frac{\sum_{i=1}^n (y_i-m)^2}{2} \right)
+\label{e:normal_known_mean_posterior}
+\end{equation}
+
+
+\subsubsection{Normal model with default prior}
+
+Assume $Y_i\ind N(\mu,\sigma^2)$ and the improper prior 
+$p(\mu,\sigma^2) \propto 1/\sigma^2$. 
+The posterior is in Equation \eqref{e:normal_default_posterior}.
+\begin{equation}
+\mu|\sigma^2 \sim N(\overline{y},\sigma^2/n) \quad 
+\sigma^2 \sim IG\left(\frac{n-1}{2},\frac{\sum_{i=1}^n (y_i-\overline{y})^2}{2}\right).
+\label{e:normal_default_posterior}
+\end{equation}
+The marginal posterior for $\mu$ is in Equation 
+\eqref{e:normal_default_mean_posterior}.
+\begin{equation}
+\mu|y \sim t_{n-1}(\overline{y},s^2/n)
+\label{e:normal_default_mean_posterior}
+\end{equation}
+
+
+\subsubsection{Normal model with natural conjugate prior}
+
+Assume $Y_i\ind N(\mu,\sigma^2)$ and the natural conjugate prior in Equation
+\eqref{e:normal_prior}.
+\begin{equation}
+\mu|\sigma^2 \sim N(m,\sigma^2/k) \quad \sigma^2 \sim IG(a,b).
+\label{e:normal_prior}
+\end{equation}
+The posterior is in Equation \eqref{e:normal_informative_posterior}
+\begin{equation}
+\mu|\sigma^2 \sim N(m',\sigma^2/k') \quad \sigma^2 \sim IG(a',b') 
+\label{e:normal_informative_posterior}
+\end{equation}
+with the values provided
+in Equation \eqref{e:normal_posterior_parameters}.
+\begin{align}
+\begin{split}
+k' &= k + n \\
+a' &= a + \frac{n}{2} \\
+m' &= \frac{km+n\overline{y}}{k+n} \\
+b' &= b + \frac{1}{2} (n-1) s^2 + \frac{kn}{k+n}\frac{(\overline{y}-m)^2}{2} 
+\end{split}
+\label{e:normal_posterior_parameters}
+\end{align}
+The marginal posterior for $\mu$ is in Equation 
+\eqref{e:normal_informative_mean_posterior}.
+\begin{equation}
+\mu|y \sim t_{2a'}(m',b'/a'k')
+\label{e:normal_informative_mean_posterior}
+\end{equation}
 

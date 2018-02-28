@@ -12,8 +12,10 @@ Statistical inference involves making statements about those parameters.
 Throughout this part (similar to the previous part),
 we will utilize the notation where an upper case Roman letter, e.g. $Y$,
 indicates your data before you observe it
-while a lower case Roman letter, e.g. $y$,
-indicates the observed value for your data. 
+while a lower case Roman letter, e.g. $y$, 
+indicates the observed value for your data.
+Lower case Roman letters will always indicate known quantities, e.g. your data, 
+statistics of your data, or assumed values in a prior.
 We now introduce Greek letters for the unknown parameters of the probability 
 model for your data.
 
@@ -73,3 +75,26 @@ In this sample,
 we can calculate statistics. 
 So we might calculate the sample proportion of successes which is $y$ 
 (the number of observed successes) divided by $n$.
+
+Common statistics that will be used throughout this chapter are the sample
+average (Equation \eqref{e:sample_average}) 
+\begin{equation}
+\overline{y} = \frac{1}{n}\sum_{i=1}^n y_i
+\label{e:sample_average}
+\end{equation}
+and the sample variance
+(Equation \eqref{e:sample_variance}).
+\begin{equation}
+s = \frac{1}{n-1}\sum_{i=1}^n (y_i-\overline{y})^2
+\label{e:sample_variance}
+\end{equation}
+
+
+
+\section{Likelihood}
+
+Let $\theta$ be a generic parameter (vector) and $y$ the data observed from 
+a model $p_{y|\theta}(y|\theta)$.
+
+\subsection{Maximum likelihood estimator}
+

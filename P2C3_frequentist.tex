@@ -1,0 +1,148 @@
+% !TeX root = SMRW.tex
+
+\chapter{Frequentist inference}
+
+Frequentist inference is based on considering what could have happened if 
+different data sets had been obtained.
+Thus from this perspective, 
+the data are considered random.
+
+
+\section{Confidence intervals and \pvalue{}s}
+
+\subsection{Confidence interval}
+
+For a scalar $\theta$,
+a \emph{$100(1-a)$\% confidence interval} is a {\bf random} interval of the form 
+$(L,U)$ such that the probability (among the different sets of data that could 
+have been obtained) that the interval contains the true value is $100(1-a)$.
+
+A \emph{(two-sided) equal-tailed $100(1-a)$\% confidence interval} has 
+probability $a/2$ that $\theta<L$ and 
+probability $a/2$ that $\theta>U$.
+A \emph{one-sided lower $100(1-a)$\% confidence interval} has $L=-\infty$ 
+(or whatever the lower bound for the support of $\theta$ is) and
+probability $a$ that $\theta>U$
+while an \emph{one-sided upper $100(1-a)$\% confidence interval} has $U=\infty$ 
+(or whatever the upper bound for the support of $\theta$ is) and
+probability $a$ that $\theta<L$.
+
+
+
+
+
+\subsection{\pvalue{}}
+
+For a given model $p_{y|\theta}(y|\theta_0)$ and a proposed parameter value 
+$\theta_0$, a \emph{\pvalue{}} is the probability 
+(when the data are considered random)
+of observing a test statistic as or more extreme than that observed if the null
+hypothesis is true.
+
+To be completed...
+
+\subsection{Relationship between confidence intervals and pvalues}
+
+A two-sided $100(1-a)$\% confidence interval will contain $\theta_0$ 
+if and only if the pvalue for the test with null hypothesis 
+$H_0:\theta=\theta_0$ is greater than $a$.
+A one-sided lower $100(1-a)$\% confidence interval will contain $\theta_0$
+if and only if the pvalue for the test with null hypothesis 
+$H_0:\theta\ge\theta_0$ is greater than $a$.
+A one-sided upper $100(1-a)$\% confidence interval contains $\theta_0$
+if and only if the pvalue for the test with null hypothesis 
+$H_0:\theta\le\theta_0$ is greater than $a$.
+
+
+
+\subsection{Asymptotic confidence intervals and \pvalue{}s}
+
+To be completed...
+
+\section{Binomial model}
+
+Assume the binomial model $Y\sim Bin(n,\theta)$. 
+
+\subsection{Confidence intervals}
+
+
+\subsubsection{Based on CLT}
+
+An approximate $100(1-a)$\% confidence interval can be constructed from the 
+asymptotic distibution for $Y/n$ which, according to the Central Limit Theorem
+is 
+\[
+\hat\theta \asim N\left(\theta, \frac{\theta(1-\theta)}{n} \right)
+\]
+where $\hat\theta = Y/n$.
+Thus, an approximate two-sided $100(1-a)$\% confidence interval is
+\[ 
+\hat\theta \pm z_{a/2} \sqrt{\frac{\hat\theta(1-\hat\theta)}{n}}.
+\]
+An approximate one-sided lower $100(1-a)$\% confidence interval is
+\[
+\left[0,\hat\theta + z_{a} \sqrt{\frac{\hat\theta(1-\hat\theta)}{n}}\right).
+\]
+An approximate one-sided upper $100(1-a)$\% confidence interval is
+\[
+\left(\hat\theta - z_{a} \sqrt{\frac{\hat\theta(1-\hat\theta)}{n}},1\right].
+\]
+
+\subsubsection{Based on credible intervals}
+
+Approximate $100(1-a)$\% confidence intervals can also be constructed by finding
+the associated $100(1-a)$\% credible intervals described in Section 
+\ref{s:binomial_credible_intervals}.
+
+
+\subsection{\pvalue{}s}
+
+Exact \pvalue{}s can be calculated for the binomial model, 
+but if $n$ is large (and $y\ge 5$ and $n-y\ge 5$) 
+approximate \pvalue{}s based on the CLT can be constructed.
+
+\subsubsection{Exact \pvalue{}s}
+
+The test statistic for exact \pvalue{}s is $Y\sim Bin(n,\theta_0)$ and
+the observed value is $y$. 
+For the two-sided test of $H_0: \theta=\theta_0$ vs $H_A: \theta\ne\theta_0$,
+the exact pvalue is 
+\[
+P(|Y-n\theta_0|\ge |y-n\theta_0|).
+\]
+
+For the one-sided test of $H_0: \theta\le\theta_0$ vs $H_A: \theta>\theta_0$,
+the exact pvalue is 
+\[
+P(Y\ge y).
+\]
+
+For the one-sided test of $H_0: \theta\ge\theta_0$ vs $H_A: \theta<\theta_0$,
+the exact pvalue is 
+\[
+P(Y\le y).
+\]
+
+\subsubsection{Approximate \pvalue{}s}
+
+To be completed ... (ignore below)
+
+The test statistic for exact \pvalue{}s is $Y/n\asim N(\theta_0, $ and
+the observed value is $y/n$. 
+For the two-sided test of $H_0: \theta=\theta_0$ vs $H_A: \theta\ne\theta_0$,
+the exact pvalue is 
+\[
+P(|Y-n\theta_0|\ge |y-n\theta_0|).
+\]
+
+For the one-sided test of $H_0: \theta\le\theta_0$ vs $H_A: \theta>\theta_0$,
+the exact pvalue is 
+\[
+P(Y\ge y).
+\]
+
+For the one-sided test of $H_0: \theta\ge\theta_0$ vs $H_A: \theta<\theta_0$,
+the exact pvalue is 
+\[
+P(Y\le y).
+\]
