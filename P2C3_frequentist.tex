@@ -110,39 +110,43 @@ the exact pvalue is
 \[
 P(|Y-n\theta_0|\ge |y-n\theta_0|).
 \]
-
 For the one-sided test of $H_0: \theta\le\theta_0$ vs $H_A: \theta>\theta_0$,
 the exact pvalue is 
 \[
 P(Y\ge y).
 \]
-
 For the one-sided test of $H_0: \theta\ge\theta_0$ vs $H_A: \theta<\theta_0$,
 the exact pvalue is 
 \[
 P(Y\le y).
 \]
+Calculating these quantities involves using the probability mass function 
+(or cumulative distribution function) for the $Bin(n,\theta_0)$ distribution.
 
 \subsubsection{Approximate \pvalue{}s}
 
-To be completed ... (ignore below)
-
-The test statistic for exact \pvalue{}s is $Y/n\asim N(\theta_0, $ and
-the observed value is $y/n$. 
+The test statistic for calculating exact \pvalue{}s is 
+\[
+Z = \frac{\frac{Y}{n}-\theta}{\sqrt{\frac{\frac{Y}{n}\left(1-\frac{Y}{n}\right)}{n}}} \asim 
+N(0,1)
+\]
+and the observed value is 
+\begin{equation}
+z = \frac{\frac{y}{n}-\theta_0}{\sqrt{\frac{\frac{y}{n}\left(1-\frac{y}{n}\right)}{n}}}
+\end{equation}
+where $\theta_0$ is defined in the hypotheses below.
 For the two-sided test of $H_0: \theta=\theta_0$ vs $H_A: \theta\ne\theta_0$,
-the exact pvalue is 
+the approximate pvalue is 
 \[
-P(|Y-n\theta_0|\ge |y-n\theta_0|).
+2P(Z\le -|z|)
 \]
-
 For the one-sided test of $H_0: \theta\le\theta_0$ vs $H_A: \theta>\theta_0$,
-the exact pvalue is 
+the approximate pvalue is 
 \[
-P(Y\ge y).
+P(Z\ge z).
 \]
-
 For the one-sided test of $H_0: \theta\ge\theta_0$ vs $H_A: \theta<\theta_0$,
-the exact pvalue is 
+the approximate pvalue is 
 \[
-P(Y\le y).
+P(Z\le z).
 \]
